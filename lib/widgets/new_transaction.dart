@@ -5,6 +5,8 @@ class NewTransaction extends StatelessWidget {
   final titleController = TextEditingController();
   final amountController = TextEditingController();
 
+  /*Using the bellow way to make function instead of
+  * final VoidCallback addTx */
   final void Function(String title, double amount) addTx;
 
   NewTransaction({super.key, required this.addTx});
