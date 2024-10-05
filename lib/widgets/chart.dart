@@ -1,6 +1,5 @@
 import 'package:expense_planner_mobile_app/models/transaction.dart';
 import 'package:expense_planner_mobile_app/widgets/chart_bar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -9,6 +8,8 @@ class Chart extends StatelessWidget {
 
   const Chart({super.key, required this.recentTransactions});
 
+  //===============================================================================================
+  // For gathering the last 7 days
   List<Map<String, Object>> get groupedTransactionValue {
     return List.generate(7, (index) {
       final weekday = DateTime.now().subtract(
@@ -31,6 +32,8 @@ class Chart extends StatelessWidget {
     }).reversed.toList( );
   }
 
+  //===============================================================================================
+  //for combining the last 7 day's transactions into one
   double get totalSpending {
     return groupedTransactionValue.fold(0.0, (sum, item) {
       return sum + (item['amount'] as double);
@@ -39,17 +42,18 @@ class Chart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(groupedTransactionValue);
     return Card(
       elevation: 6,
-      margin: EdgeInsets.all(20),
+      margin: const EdgeInsets.all(20),
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
+
           children: groupedTransactionValue.map((data) {
             return Flexible(
               fit: FlexFit.tight,
+
               child: ChartBar(
                 label: data['day'] as String,
                 spendingAmount: data['amount'] as double,

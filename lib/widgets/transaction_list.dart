@@ -1,4 +1,4 @@
-import 'package:expense_planner_mobile_app/widgets/transaction_item.dart';
+import '../widgets/transaction_item.dart';
 import 'package:flutter/material.dart';
 import '../models/transaction.dart';
 
@@ -13,17 +13,23 @@ class TransactionList extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
+
+      //deciding for show an empty list or list with transactions
       child: transactions.isEmpty
           ? LayoutBuilder(builder: (ctx, constraint) {
+
+              //Empty part
               return Column(
                 children: [
                   Text(
                     'No Transaction added yet!',
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
+
                   const SizedBox(
                     height: 10,
                   ),
+
                   SizedBox(
                     height: constraint.maxHeight * 0.6,
                     child: const Image(
@@ -33,7 +39,9 @@ class TransactionList extends StatelessWidget {
                   ),
                 ],
               );
-            })
+            },)
+
+          // List with transaction part
           : ListView(
               children: transactions
                   .map(
