@@ -194,7 +194,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
 
               children: [
                 GestureDetector(
-                  child: const Icon(CupertinoIcons.add),
+                  child: const Icon(CupertinoIcons.add, color: Colors.white,),
                   onTap: () => _startAddNewTransaction(context),
                 ),
               ],
@@ -208,7 +208,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
             actions: [
               IconButton(
                 onPressed: () => _startAddNewTransaction(context),
-                icon: const Icon(Icons.add),
+                icon: const Icon(Icons.add, color: Colors.white,),
               ),
             ],
           ) as PreferredSizeWidget;
@@ -254,8 +254,15 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
             floatingActionButton: Platform.isIOS
                 ? Container()
                 : FloatingActionButton(
+                    elevation: 10,
+                    backgroundColor: Theme.of(context).primaryColor,
+
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+
                     onPressed: () => _startAddNewTransaction(context),
-                    child: const Icon(Icons.add),
+                    child: const Icon(Icons.add, color: Colors.white,),
                   ),
           );
   }
